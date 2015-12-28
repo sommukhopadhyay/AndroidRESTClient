@@ -17,6 +17,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="83dp" />
+        android:layout_marginTop="50dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show on Google Map"
+        android:id="@+id/showOnMap"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
 <!-- From: file:/home/som/Workspace/Android/Training/AndroidRESTClient/app/src/main/res/layout/activity_display.xml -->

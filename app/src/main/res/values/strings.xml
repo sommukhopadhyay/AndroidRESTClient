@@ -4,5 +4,8 @@
     <string name="app_name">AndroidRESTClient</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_display">Interesting Places Nearby</string>
+    <string name="title_activity_pois_on_google_map">POIsOnGoogleMapActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

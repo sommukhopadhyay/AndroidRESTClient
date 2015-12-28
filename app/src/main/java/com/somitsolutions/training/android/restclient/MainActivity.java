@@ -23,22 +23,24 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 	Button mButtonGetWeather;
 	Button mButtonGetPlace;
-	double lat;
-	double lng;
+	public static double lat;
+	public static double lng;
 
 	ProgressDialog mProgressDialog;
 	static Context mContext;
 	LocationManager lm;
-	
+	private static MainActivity mainActivity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		mContext = this;
+		mainActivity = this;
 		mButtonGetPlace = (Button)findViewById(R.id.buttonPlace);
 		
 		mProgressDialog = new ProgressDialog(this);
+		mProgressDialog.setTitle("Getting Data...Please wait...");
 		
 		mButtonGetPlace.setOnClickListener(this);
 
@@ -118,8 +120,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			e.printStackTrace();
 		}
 
-
 	}
+	public static MainActivity getMainActivity() {
+		return mainActivity;
+	}
+
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -128,9 +133,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			LinkedHashMap<Object, Object> data = new LinkedHashMap<Object,Object>();
 			//String pinStr = mPin.getText().toString();
 			//Log.i("Pin", pinStr);
-			data.put("lat", lat);
-			data.put("lng", lng);
-			Toast.makeText(getApplicationContext(), "Lat:" + Double.toString(lat) + "lng:" + Double.toString(lng), Toast.LENGTH_LONG).show();
+			data.put("lat", lat/*22.5735314*/);
+			data.put("lng", lng/*88.4331189*/);
+			//Toast.makeText(getApplicationContext(), "Lat:" + Double.toString(lat) + "lng:" + Double.toString(lng), Toast.LENGTH_LONG).show();
 			data.put("username", "sommukhopadhyay");
 			
 			HTTPAsyncTask httpAsyncTaskGetPlace = new HTTPAsyncTask(mContext,new CallBack(){
@@ -149,6 +154,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 				if (!result.equals("")) {
 						try {
 						JSONObject jsonObject = new JSONObject(result);
+						Log.i("Data", jsonObject.toString());
 						if (jsonObject.length() != 0){
 							JSONArray poi = new JSONArray(jsonObject.getString("poi"));
 							if(poi.length() != 0){
@@ -163,6 +169,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 											poiData.getString("typeName") + " - " +
 													poiData.getString("name"), Toast.LENGTH_LONG).show();
 								}*/
+							}
+							else{
+								Toast.makeText(getApplicationContext(), "No Data Available...", Toast.LENGTH_LONG).show();
 							}
 						}
 						else{
