@@ -136,7 +136,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			data.put("lat", lat/*22.5735314*/);
 			data.put("lng", lng/*88.4331189*/);
 			//Toast.makeText(getApplicationContext(), "Lat:" + Double.toString(lat) + "lng:" + Double.toString(lng), Toast.LENGTH_LONG).show();
-			data.put("username", "sommukhopadhyay");
+			data.put("username", "demo");
 			
 			HTTPAsyncTask httpAsyncTaskGetPlace = new HTTPAsyncTask(mContext,new CallBack(){
 
